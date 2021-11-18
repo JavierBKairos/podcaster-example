@@ -3,8 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getPodcast } from '../../api/iTunesApi';
 import PodcastEpisodeSection from '../sections/PodcastEpisodeSection';
 import PodcastEpisodeListSection from '../sections/PodcastEpisodeListSection';
+import Header from '../common/Header';
 
 const PodcastView = () => {
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { podcastId, episodeId } = useParams();
 
@@ -14,6 +16,7 @@ const PodcastView = () => {
     (async () => {
       const responsePodcast = await getPodcast(podcastId);
       setPodcast(responsePodcast);
+      setLoading(false);
     })();
   }, [podcastId, episodeId]);
 
@@ -27,11 +30,8 @@ const PodcastView = () => {
 
   return (
     <>
-      <div className="header">
-        <span className="pointer" onClick={() => navigate('/')}>Podcaster</span>
-      </div>
-
-      {!!podcast.length && (
+      <Header loading={loading} />
+      {!loading && (
         <div className="podcast-detail">
           <div className="descriptive-podcast-card">
             <img
@@ -41,8 +41,14 @@ const PodcastView = () => {
               src={podcast[0].artworkUrl600}
             />
 
-            <div className="title">{podcast[0].collectionName}</div>
-            <div className="italic">{`by ${podcast[0].artistName}`}</div>
+            <div className="title pointer" onClick={() => navigate(`/podcast/${podcastId}`)}>
+              {podcast[0].collectionName}
+            </div>
+            <div
+              className="italic pointer"
+              onClick={() =>
+                navigate(`/podcast/${podcastId}`)
+              }>{`by ${podcast[0].artistName}`}</div>
 
             <div className="title">Description:</div>
             <p className="italic">{podcast[0].trackName}</p>

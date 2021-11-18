@@ -11,12 +11,18 @@ body {
   cursor: pointer;
 }
 
-.link- .header {
+.bold-blue {
+  font-weight: bold;
   color: #307abc;
+}
+
+.header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid #e8e8e8;
   padding: 10px 0;
-  font-family: Arial;
-  font-weight: bold;
 }
 
 .filter {
@@ -33,7 +39,6 @@ body {
   margin: 0 20px;
   border-radius: 10px;
   font-weight: bold;
-  font-family: arial;
   font-size: 20px;
 }
 
@@ -149,7 +154,6 @@ body {
 }
 
 .podcast-detail .row {
-  font-family: Arial, Helvetica, sans-serif;
   display: grid;
   grid-template-columns: 6fr 1fr 1fr;
   padding: 10px;
@@ -170,12 +174,15 @@ body {
 .podcast-episode .title {
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .podcast-episode .description {
-  margin: 30px 0;
-  line-height: 20px;
+  margin: 14px 0;
+}
+
+.podcast-episode .description-line {
+  padding: 3px;
 }
 
 .podcast-episode audio {

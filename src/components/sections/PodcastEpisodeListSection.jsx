@@ -10,12 +10,12 @@ const PodcastEpisodeListSection = ({ episodeList }) => {
 
   return (
     <div className="episode-list-section">
-      <div className="episodes-counter">Episodios: {episodeList.length}</div>
+      <div className="episodes-counter">Episodes: {episodeList.length}</div>
       <div className="episode-list">
         <div className="header-row row">
-          <div>Título</div>
-          <div>Fecha</div>
-          <div>Duración</div>
+          <div>Title</div>
+          <div>Date</div>
+          <div>Duration</div>
         </div>
         {episodeList.map((episode, index) => {
           const durationInHours = episode.trackTimeMillis / 3600000;
@@ -25,9 +25,9 @@ const PodcastEpisodeListSection = ({ episodeList }) => {
           return (
             <div
               key={index}
-              className="row episode"
+              className="row episode pointer"
               onClick={() => navigate(`/podcast/${podcastId}/episode/${episode.trackId}`)}>
-              <div>{episode.trackName}</div>
+              <div className="bold-blue">{episode.trackName}</div>
               <div>{episode.releaseDate.split('T')[0]}</div>
               <div>{duration}</div>
             </div>

@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getTopPodcasts } from '../../api/iTunesApi';
+import Header from '../common/Header';
 
 const PodcastList = () => {
   const [topPodcasts, setTopPodcasts] = useState([]);
   const [filter, setFilter] = useState('');
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       const responseTopPodcasts = await getTopPodcasts();
       setTopPodcasts(responseTopPodcasts);
+      setLoading(false);
     })();
   }, []);
 
@@ -28,11 +31,9 @@ const PodcastList = () => {
 
   return (
     <>
-      <div className="header">
-        <span className="pointer" onClick={() => navigate('/')}>Podcaster</span>
-      </div>
+      <Header loading={loading} />
 
-      {!!topPodcasts?.length && (
+      {!loading && (
         <>
           <div className="filter">
             <span className="counter">{filteredPodcasts.length}</span>

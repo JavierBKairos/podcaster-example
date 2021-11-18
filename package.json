@@ -14,6 +14,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:dev": "npm start",
+    "start:pro": "npm run build && npm run serve",
+    "install:serve": "npm install -g serve",
+    "serve": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
