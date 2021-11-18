@@ -1,12 +1,17 @@
 body {
-  padding: 10px 120px
+  padding: 10px 120px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .padding-m {
   padding: 20px;
 }
 
-.header {
+.pointer {
+  cursor: pointer;
+}
+
+.link- .header {
   color: #307abc;
   border-bottom: 1px solid #e8e8e8;
   padding: 10px 0;
@@ -59,6 +64,7 @@ body {
   margin: 0 auto;
   margin-top: 100px;
   box-shadow: 0px 0px 30px 0px rgb(0 0 0 / 15%);
+  cursor: pointer;
 }
 
 .podcast-card img {
@@ -89,4 +95,89 @@ body {
   overflow: hidden;
   white-space: nowrap;
   margin-bottom: 10px;
+}
+
+.episodes-counter {
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0px 0px 30px 0px rgb(0 0 0 / 15%);
+}
+
+.podcast-detail {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  margin-top: 20px;
+  grid-column-gap: 50px;
+}
+
+.podcast-detail .descriptive-podcast-card {
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 30px 0px rgb(0 0 0 / 15%);
+  height: min-content;
+}
+
+.podcast-detail .descriptive-podcast-card img {
+  width: 200px;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+
+.descriptive-podcast-card .title {
+  margin-top: 20px;
+  font-weight: bold;
+  border-top: 1px solid #e7e7e7;
+  padding-top: 20px;
+}
+
+.italic {
+  font-size: 13px;
+  font-style: italic;
+}
+
+.podcast-detail .episode-list {
+  margin-top: 50px;
+  padding: 50px 20px;
+  box-shadow: 0px 0px 30px 0px rgb(0 0 0 / 15%);
+}
+
+.podcast-detail .header-row {
+  font-weight: bold;
+}
+
+.podcast-detail .row {
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  grid-template-columns: 6fr 1fr 1fr;
+  padding: 10px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.podcast-detail .row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.podcast-episode {
+  height: min-content;
+  padding: 30px;
+  margin: 0 3%;
+  box-shadow: 0px 0px 30px 0px rgb(0 0 0 / 15%);
+}
+
+.podcast-episode .title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.podcast-episode .description {
+  margin: 30px 0;
+  line-height: 20px;
+}
+
+.podcast-episode audio {
+  width: 100%;
 }
