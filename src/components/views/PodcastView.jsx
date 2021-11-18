@@ -5,11 +5,34 @@ import PodcastEpisodeSection from '../sections/PodcastEpisodeSection';
 import PodcastEpisodeListSection from '../sections/PodcastEpisodeListSection';
 import Header from '../common/Header';
 
+export const DescriptivePodcastCard = ({ podcast, navigate }) => {
+  return (
+    <div className="descriptive-podcast-card">
+      <img
+        className="pointer"
+        onClick={() => navigate(`/podcast/${podcast.collectionId}`)}
+        alt={podcast.collectionName}
+        src={podcast.artworkUrl600}
+      />
+
+      <div className="title pointer" onClick={() => navigate(`/podcast/${podcast.collectionId}`)}>
+        {podcast.collectionName}
+      </div>
+      <div className="italic pointer" onClick={() => navigate(`/podcast/${podcast.collectionId}`)}>
+        {`by ${podcast.artistName}`}
+      </div>
+
+      <div className="title">Description:</div>
+      <p className="italic">{podcast.trackName}</p>
+    </div>
+  );
+};
+
 const PodcastView = () => {
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { podcastId, episodeId } = useParams();
 
+  const [loading, setLoading] = useState(true);
   const [podcast, setPodcast] = useState([]);
 
   useEffect(() => {
@@ -20,7 +43,7 @@ const PodcastView = () => {
     })();
   }, [podcastId, episodeId]);
 
-  const [, ...episodeList] = podcast;
+  const [, ...episodeList] = podcast || [];
   const PodcastSection = () =>
     episodeId ? (
       <PodcastEpisodeSection episodeList={episodeList} />
@@ -30,29 +53,10 @@ const PodcastView = () => {
 
   return (
     <>
-      <Header loading={loading} />
+      <Header navigate={navigate} loading={loading} />
       {!loading && (
         <div className="podcast-detail">
-          <div className="descriptive-podcast-card">
-            <img
-              className="pointer"
-              onClick={() => navigate(`/podcast/${podcastId}`)}
-              alt={podcast[0].collectionName}
-              src={podcast[0].artworkUrl600}
-            />
-
-            <div className="title pointer" onClick={() => navigate(`/podcast/${podcastId}`)}>
-              {podcast[0].collectionName}
-            </div>
-            <div
-              className="italic pointer"
-              onClick={() =>
-                navigate(`/podcast/${podcastId}`)
-              }>{`by ${podcast[0].artistName}`}</div>
-
-            <div className="title">Description:</div>
-            <p className="italic">{podcast[0].trackName}</p>
-          </div>
+          <DescriptivePodcastCard podcast={podcast[0]} navigate={navigate} />
           <PodcastSection />
         </div>
       )}

@@ -1,6 +1,7 @@
+const DAY_IN_MILLISECONDS = 86400000;
 const getTopPodcasts = async () => {
   const cache = localStorage.getTopPodcasts ? JSON.parse(localStorage.getTopPodcasts) : null;
-  const isCacheValid = cache && Date.now() - cache.time < 86400000;
+  const isCacheValid = cache && Date.now() - cache.time < DAY_IN_MILLISECONDS;
   if (isCacheValid) {
     return cache.response;
   } else {
@@ -25,7 +26,7 @@ const getPodcast = async podcastId => {
   const cache = localStorage[`getPodcast-${podcastId}`]
     ? JSON.parse(localStorage[`getPodcast-${podcastId}`])
     : null;
-  const isCacheValid = cache && Date.now() - cache.time < 86400000;
+  const isCacheValid = cache && Date.now() - cache.time < DAY_IN_MILLISECONDS;
   if (isCacheValid) {
     return cache.response;
   } else {
