@@ -30,7 +30,6 @@ export const PodcastCard = ({ podcast, navigate }) => {
 };
 
 export const PodcastTopList = ({ filteredPodcasts, navigate }) => {
-  debugger;
   return (
     <div className="four-columns">
       {filteredPodcasts.map((podcast, index) => (

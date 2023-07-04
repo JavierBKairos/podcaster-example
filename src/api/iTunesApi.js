@@ -6,14 +6,10 @@ const getTopPodcasts = async () => {
     return cache.response;
   } else {
     try {
-      const response = await fetch(
-        `https://api.allorigins.win/get?url=${encodeURIComponent(
-          'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
-        )}`
-      );
+      const response = await fetch('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json');
+      const responseJson = await response.json();
 
-      const data = await response.json();
-      const formattedData = JSON.parse(data.contents)?.feed?.entry;
+      const formattedData = responseJson.feed.entry;
       localStorage.getTopPodcasts = JSON.stringify({ response: formattedData, time: Date.now() });
       return formattedData;
     } catch (e) {
@@ -31,14 +27,10 @@ const getPodcast = async podcastId => {
     return cache.response;
   } else {
     try {
-      const response = await fetch(
-        `https://api.allorigins.win/get?url=${encodeURIComponent(
-          `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=100`
-        )}`
-      );
+      const response = await fetch(`https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=100`);
+      const responseJson = await response.json();
 
-      const data = await response.json();
-      const podcastInfo = JSON.parse(data.contents)?.results;
+      const podcastInfo = responseJson.results;
       localStorage[`getPodcast-${podcastId}`] = JSON.stringify({
         response: podcastInfo,
         time: Date.now(),

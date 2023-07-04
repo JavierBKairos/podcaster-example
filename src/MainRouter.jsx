@@ -4,6 +4,7 @@ import './assets/common.css';
 
 import PodcastListView from './components/views/PodcastListView';
 import PodcastView from './components/views/PodcastView';
+import Error from './components/views/Error';
 
 const MainRouter = () => (
   <BrowserRouter>
@@ -11,6 +12,7 @@ const MainRouter = () => (
       <Route path="/" element={<PodcastListView />} />
       <Route path="/podcast/:podcastId/episode/:episodeId" element={<PodcastView />} />
       <Route path="/podcast/:podcastId" element={<PodcastView />} />
+      <Route path="/error" element={<Error />} />
     </Routes>
   </BrowserRouter>
 );

@@ -38,10 +38,14 @@ const PodcastView = () => {
   useEffect(() => {
     (async () => {
       const responsePodcast = await getPodcast(podcastId);
-      setPodcast(responsePodcast);
-      setLoading(false);
+      if (responsePodcast) {
+        setPodcast(responsePodcast);
+        setLoading(false);
+      } else {
+        navigate('/error');
+      }
     })();
-  }, [podcastId, episodeId]);
+  }, [podcastId, episodeId, navigate]);
 
   const [, ...episodeList] = podcast || [];
   const PodcastSection = () =>
